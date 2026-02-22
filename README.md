@@ -85,7 +85,7 @@ git clone https://github.com/yourusername/pinkmentor.git
 
 #### Screenshots 
 
-![image]Login.jpeg
+![image](Login.jpeg)
 Login and Registration Page
 Secure sign-in page with email/password and Google authentication options.
 
