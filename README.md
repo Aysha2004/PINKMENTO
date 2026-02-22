@@ -77,7 +77,7 @@ List the key features of your project:
 #Clone The Repository
 git clone https://github.com/yourusername/pinkmentor.git
 
----
+```
 
 ## Project Documentation
 
