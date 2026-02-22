@@ -59,3 +59,16 @@
 [2026-02-22T02:49:08.656Z] DB: Connecting to MongoDB...
 [2026-02-22T02:49:12.377Z] DB: MongoDB Atlas connected successfully
 [2026-02-22T03:20:23.283Z] Attempting Google login with token segment count: 2
+[2026-02-22T03:56:58.155Z] Attempting Google login with token segment count: 2
+[2026-02-22T04:01:25.337Z] Attempting Google login with token segment count: 2
+[2026-02-22T04:23:21.352Z] Attempting Google login with token segment count: 2
+[2026-02-22T04:23:49.072Z] SESS: Booking attempt: Requester 699a5f34834c705c2ee5d3a5 -> Teacher 699a64be80c348b26eb72761 for skill "JavaScript"
+[2026-02-22T04:23:49.207Z] SESS: Teacher skill found. Proceeding with booking.
+[2026-02-22T04:23:49.846Z] SESS: Session created successfully: 699a84d5b22e1f88183e76c7
+[2026-02-22T04:24:34.098Z] Received skill publish request: react for beginners (Category: Programming & Development, Cost: 1)
+[2026-02-22T04:24:34.098Z] Finding user 699a5f34834c705c2ee5d3a5...
+[2026-02-22T04:24:34.185Z] User found: souu2909@gmail.com. Checking duplicates for react for beginners...
+[2026-02-22T04:24:34.190Z] Successfully added skill to user object. Upgrading...
+[2026-02-22T04:24:34.190Z] Saving user...
+[2026-02-22T04:24:34.290Z] User saved successfully. Sending response.
+[2026-02-22T04:28:18.702Z] Attempting Google login with token segment count: 2
