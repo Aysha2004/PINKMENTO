@@ -2,39 +2,52 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# PinkMentor 🎯
 
 ## Basic Details
 
-### Team Name: [Name]
+### Team Name: CodeVerse
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1:Aysha Sulthana - TIST
+- Member 2: Soumya R - TIST
 
 ### Hosted Project Link
 [mention your project hosted link here]
 
 ### Project Description
-[2-3 lines about what your project does]
+PinkMentor is a mentorship platform designed to connect learners with experienced mentors for structured guidance, career growth, and skill development. The platform enables users to register, explore mentorship opportunities, track progress, and build meaningful learning relationships in an organized and scalable way.
 
 ### The Problem statement
-[What problem are you solving?]
+Many students and early professionals struggle to find consistent and structured mentorship. Even when mentorship exists, it often lacks:
+
+- Clear goal tracking  
+- Progress monitoring  
+- Organized session scheduling  
+- Centralized communication  
+
+As a result, mentorship becomes informal, inconsistent, and ineffective
 
 ### The Solution
-[How are you solving it?]
+PinkMentor provides:
 
----
+- Role-based authentication (Mentor / Mentee)
+- Structured goal creation and tracking
+- Session scheduling system
+- Dashboard with progress insights
+- Centralized mentorship records
+
+By combining these features, PinkMentor transforms mentorship into a trackable and organized growth system.
 
 ## Technical Details
 
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
+- Languages used:JavaScript ,Python
+- Frameworks used: React (Frontend), FastAPI (Backend)
+- Libraries used: - Axios, React Router, Pydantic, SQLAlchemy
+- Tools used: VS Code, Git & GitHub, Postman, Uvicorn
 
 **For Hardware:**
 - Main components: [List main components]
@@ -46,11 +59,13 @@
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
-
+- User Authentication (Login / Register)
+- Mentor & Mentee role selection
+- Goal creation and progress tracking
+- Session scheduling
+- Dashboard with mentorship overview
+- REST API based backend architecture
+  
 ---
 
 ## Implementation
@@ -59,21 +74,8 @@ List the key features of your project:
 
 #### Installation
 ```bash
-[Installation commands - e.g., npm install, pip install -r requirements.txt]
-```
-
-#### Run
-```bash
-[Run commands - e.g., npm start, python app.py]
-```
-
-### For Hardware:
-
-#### Components Required
-[List all components needed with specifications]
-
-#### Circuit Setup
-[Explain how to set up the circuit]
+#Clone The Repository
+git clone https://github.com/yourusername/pinkmentor.git
 
 ---
 
@@ -81,16 +83,23 @@ List the key features of your project:
 
 ### For Software:
 
-#### Screenshots (Add at least 3)
+#### Screenshots 
 
 ![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+Login and Registration Page
+Secure sign-in page with email/password and Google authentication options.
 
 ![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+View My Matches / My Sessions
+Manage upcoming and past sessions, track learning progress, and join scheduled meetings.
 
 ![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+Share Your Knowledge Page
+Form to create a new skill offering with level, pricing, availability, and description.
+
+![Screenshot3](Add screenshot 3 here with proper name)
+Recruit Talent (Leaderboard)
+Explore top-rated mentors based on reputation and session count and recruit the best fit.
 
 #### Diagrams
 
@@ -370,39 +379,37 @@ python script.py -v --format json data.json
 
 ---
 
-## AI Tools Used (Optional - For Transparency Bonus)
+## AI Tools Used
 
-If you used AI tools during development, document them here for transparency:
+Tool Used: ChatGPT
 
-**Tool Used:** [e.g., GitHub Copilot, v0.dev, Cursor, ChatGPT, Claude]
+Purpose:
 
-**Purpose:** [What you used it for]
-- Example: "Generated boilerplate React components"
-- Example: "Debugging assistance for async functions"
-- Example: "Code review and optimization suggestions"
+- Code debugging
 
-**Key Prompts Used:**
-- "Create a REST API endpoint for user authentication"
-- "Debug this async function that's causing race conditions"
-- "Optimize this database query for better performance"
+- Backend API structuring guidance
 
-**Percentage of AI-generated code:** [Approximately X%]
+- Documentation drafting
 
-**Human Contributions:**
-- Architecture design and planning
-- Custom business logic implementation
-- Integration and testing
-- UI/UX design decisions
+Percentage of AI-generated code: ~20%
 
-*Note: Proper documentation of AI usage demonstrates transparency and earns bonus points in evaluation!*
+Human Contributions:
+
+- Full architecture design
+
+- UI development
+
+- Backend implementation
+
+- Integration & testing
 
 ---
 
 ## Team Contributions
 
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
-- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
+- Soumya R: Frontend development, API integration, UI/UX design, documentation
+
+- Aysha Sulthana: Backend development, database design, authentication system
 
 ---
 
