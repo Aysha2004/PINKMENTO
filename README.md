@@ -89,7 +89,7 @@ git clone https://github.com/yourusername/pinkmentor.git
 Login and Registration Page
 Secure sign-in page with email/password and Google authentication options.
 
-![image](My Session.jpeg)
+![image](MySession.jpeg)
 View My Matches / My Sessions
 Manage upcoming and past sessions, track learning progress, and join scheduled meetings.
 
