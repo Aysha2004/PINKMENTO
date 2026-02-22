@@ -56,18 +56,37 @@ const userSchema = new mongoose.Schema({
                 required: true,
                 trim: true,
             },
+            category: {
+                type: String,
+                default: 'Other',
+            },
             level: {
                 type: String,
                 enum: ['Beginner', 'Intermediate', 'Advanced', 'Mentor'],
                 required: true,
             },
-            proofLinks: {
-                type: [String],
-                default: [],
+            cost: {
+                type: Number,
+                default: 1,
             },
+            description: {
+                type: String,
+                default: '',
+            },
+            availability: {
+                type: String,
+                default: '',
+            },
+            proofLinks: [
+                {
+                    title: String,
+                    url: String,
+                    description: String,
+                },
+            ],
             allowedToTeach: {
                 type: Boolean,
-                default: false, // only set to true by admin/verification
+                default: false,
             },
         },
     ],

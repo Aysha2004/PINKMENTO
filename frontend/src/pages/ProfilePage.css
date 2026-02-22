@@ -1,0 +1,819 @@
+.profile-container {
+    min-height: 100vh;
+    padding: 40px 20px 80px 20px;
+    background-color: var(--bg-pink);
+    background-image: radial-gradient(var(--secondary-pink) 1px, transparent 1px);
+    background-size: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-header-container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 40px;
+    animation: slideDown 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.back-btn-profile {
+    position: absolute;
+    left: 0;
+    background: none;
+    border: none;
+    font-family: var(--font-pixel);
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+}
+
+.back-btn-profile:hover {
+    background-color: var(--white);
+    color: var(--primary-pink);
+}
+
+.profile-page-title {
+    font-family: var(--font-pixel);
+    font-size: 1.6rem;
+    color: var(--text-dark);
+}
+
+/* =========================================
+   LAYOUT
+   ========================================= */
+
+.profile-content {
+    display: flex;
+    gap: 32px;
+    width: 100%;
+    max-width: 1000px;
+    align-items: flex-start;
+}
+
+.profile-info-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.profile-details-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* =========================================
+   USER INFO CARD
+   ========================================= */
+
+.profile-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 40px 24px 32px 24px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: sticky;
+    top: 40px;
+}
+
+.profile-image-wrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--bg-pink);
+    border: 4px solid var(--primary-pink);
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.profile-bio {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.stat-box {
+    flex: 1;
+    background-color: #FAFAFA;
+    border: 2px dashed #FFE4E1;
+    border-radius: var(--border-radius-sm);
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-value {
+    font-family: var(--font-pixel);
+    font-size: 0.85rem;
+    color: var(--text-dark);
+}
+
+.stat-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+}
+
+.edit-profile-btn {
+    width: 100%;
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+}
+
+/* =========================================
+   CONTENT CARDS
+   ========================================= */
+
+.content-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 32px;
+    box-shadow: var(--shadow-soft);
+}
+
+.section-title {
+    font-family: var(--font-pixel);
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    border-bottom: 2px dashed var(--bg-pink);
+    padding-bottom: 12px;
+}
+
+/* =========================================
+   SKILLS LIST (vertical, one per row)
+   ========================================= */
+
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Outer skill block container */
+.skill-block {
+    border: 1px solid #FFE4E1;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    background-color: #FAFAFA;
+    transition: box-shadow 0.2s ease;
+}
+
+.skill-block:hover {
+    box-shadow: 0 4px 16px rgba(255, 182, 193, 0.25);
+}
+
+/* Left accent when work-verified */
+.skill-block--verified {
+    border-left: 4px solid var(--primary-pink);
+}
+
+/* Top info row of a skill block */
+.skill-block-top {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 20px 12px;
+    background-color: var(--white);
+    border-bottom: 1px dashed #FFE4E1;
+}
+
+.skill-block-info {
+    flex: 1;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.skill-name {
+    font-family: var(--font-pixel);
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    line-height: 1.4;
+}
+
+.verified-badge {
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* "Work Verified ✔" badge */
+.work-verified-badge {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #1565C0;
+    background-color: #E3F2FD;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.skill-header-badges {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.skill-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.level-badge,
+.taught-badge,
+.projects-count-badge {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.level-beginner {
+    background-color: #E3F2FD;
+    color: #1976D2;
+}
+
+.level-intermediate {
+    background-color: #FFF3E0;
+    color: #F57C00;
+}
+
+.level-advanced {
+    background-color: #E8F5E9;
+    color: #388E3C;
+}
+
+.taught-badge {
+    background-color: var(--bg-pink);
+    color: var(--accent-pink);
+}
+
+.projects-count-badge {
+    background-color: #EDE7F6;
+    color: #6A1B9A;
+}
+
+/* =========================================
+   PROJECTS SHOWCASE
+   ========================================= */
+
+.projects-section {
+    padding: 16px 20px 20px;
+}
+
+.projects-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.projects-section-title {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--text-dark);
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+}
+
+.toggle-form-btn {
+    background: none;
+    border: 1px solid var(--primary-pink);
+    color: var(--accent-pink);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.toggle-form-btn:hover {
+    background-color: var(--primary-pink);
+    color: white;
+}
+
+/* ── No-projects hint ── */
+.no-projects-hint {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+    text-align: center;
+    padding: 12px 0;
+}
+
+/* ── Project cards list ── */
+.project-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.project-card {
+    background-color: var(--white);
+    border: 1px solid #FFE4E1;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(255, 182, 193, 0.15);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    box-shadow: 0 4px 14px rgba(255, 182, 193, 0.3);
+    transform: translateY(-1px);
+}
+
+.project-screenshot {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-bottom: 1px solid #FFE4E1;
+}
+
+.project-card-body {
+    padding: 12px 14px;
+}
+
+.project-title {
+    font-family: var(--font-pixel);
+    font-size: 0.72rem;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.project-desc {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.project-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.project-link {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.github-link {
+    background-color: #F3E5F5;
+    color: #6A1B9A;
+}
+
+.github-link:hover {
+    background-color: #6A1B9A;
+    color: white;
+}
+
+.demo-link {
+    background-color: #FFF0F5;
+    color: var(--accent-pink);
+}
+
+.demo-link:hover {
+    background-color: var(--accent-pink);
+    color: white;
+}
+
+/* ── Add Project Form ── */
+.add-project-form {
+    background-color: var(--white);
+    border: 1px dashed var(--primary-pink);
+    border-radius: var(--border-radius-sm);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    animation: fadeIn 0.25s ease;
+    margin-top: 4px;
+}
+
+.project-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.project-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.project-form-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.optional-tag {
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 0.78rem;
+}
+
+.project-form-input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 2px solid #FFE4E1;
+    border-radius: var(--border-radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    background-color: #FAFAFA;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.project-form-input:focus {
+    border-color: var(--primary-pink);
+    background-color: var(--white);
+    box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.2);
+}
+
+.project-form-textarea {
+    resize: vertical;
+    min-height: 72px;
+}
+
+.project-form-file {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.add-project-btn {
+    background: linear-gradient(135deg, #FF69B4 0%, #FFB6C1 100%);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 11px 24px;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 10px rgba(255, 105, 180, 0.3);
+}
+
+.add-project-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(255, 105, 180, 0.5);
+}
+
+.add-project-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+/* Header row for the skills section: title + tooltip side-by-side */
+.skills-section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    border-bottom: 2px dashed var(--bg-pink);
+    padding-bottom: 12px;
+}
+
+/* Remove margin-bottom from section-title when inside skills-section-header */
+.skills-section-header .section-title {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.portfolio-tooltip {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-light);
+    font-style: italic;
+    white-space: nowrap;
+}
+
+/* Badge row inside skill card header */
+.skill-header-badges {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* "Portfolio Linked ✔" badge */
+.portfolio-linked-badge {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #2E7D32;
+    background-color: #E8F5E9;
+    border-radius: 4px;
+    padding: 3px 7px;
+    white-space: nowrap;
+}
+
+/* Saved link display row */
+.portfolio-link-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    background-color: #FFF0F5;
+    border-radius: var(--border-radius-sm);
+    padding: 8px 10px;
+}
+
+/* Clickable portfolio link */
+.portfolio-link {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-pink);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    transition: color 0.2s ease;
+}
+
+.portfolio-link:hover {
+    color: #C2185B;
+    text-decoration: underline;
+}
+
+/* Remove link button (✕) */
+.remove-link-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 0.85rem;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.remove-link-btn:hover {
+    color: #C2185B;
+    background-color: rgba(194, 24, 91, 0.08);
+}
+
+/* URL input row for adding a new link */
+.portfolio-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    align-items: center;
+}
+
+.portfolio-url-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #FFE4E1;
+    border-radius: var(--border-radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    background-color: var(--white);
+    outline: none;
+    transition: all 0.2s ease;
+    min-width: 0;
+}
+
+.portfolio-url-input:focus {
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.2);
+}
+
+/* "Add" save button */
+.save-link-btn {
+    background-color: var(--primary-pink);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.save-link-btn:hover:not(:disabled) {
+    background-color: var(--accent-pink);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(255, 105, 180, 0.35);
+}
+
+.save-link-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #FAFAFA;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid #FFE4E1;
+    transition: all 0.2s ease;
+}
+
+.history-item:hover {
+    background-color: var(--white);
+    box-shadow: 0 2px 8px rgba(255, 182, 193, 0.2);
+    border-color: var(--secondary-pink);
+}
+
+.history-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.history-skill {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.history-role {
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.role-mentor {
+    background-color: #E8EAF6;
+    color: #3F51B5;
+}
+
+.role-learner {
+    background-color: #FFF0F5;
+    color: #C2185B;
+}
+
+.history-details {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+}
+
+.history-date {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.history-status {
+    color: #4CAF50;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN 
+   ========================================= */
+@media (max-width: 850px) {
+    .profile-content {
+        flex-direction: column;
+    }
+
+    .profile-info-section,
+    .profile-details-section {
+        width: 100%;
+    }
+
+    .profile-card {
+        position: static;
+    }
+
+    .profile-stats {
+        flex-wrap: wrap;
+    }
+
+    .stat-box {
+        min-width: 80px;
+    }
+
+    .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .history-details {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 500px) {
+    .profile-header-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .back-btn-profile {
+        position: static;
+        align-self: flex-start;
+    }
+}

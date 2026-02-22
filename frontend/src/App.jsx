@@ -1,53 +1,54 @@
-import { useState, useEffect } from 'react';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
-import axios from 'axios';
-
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import DashboardPage from './pages/DashboardPage';
+import RecruiterPage from './pages/RecruiterPage';
+import FindMentorPage from './pages/FindMentorPage';
+import SessionBookingPage from './pages/SessionBookingPage';
+import SessionChatPage from './pages/SessionChatPage';
+import ProfilePage from './pages/ProfilePage';
+import TeachSkillPage from './pages/TeachSkillPage';
+import MySessionsPage from './pages/MySessionsPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
 
-    // On mount: check if a JWT is stored and re-fetch user
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            setLoading(false);
-            return;
-        }
-        axios
-            .get(`${BACKEND_URL}/auth/me`, {
-                headers: { Authorization: `Bearer ${token}` },
-            })
-            .then((res) => setUser(res.data.user))
-            .catch(() => localStorage.removeItem('token')) // token invalid/expired
-            .finally(() => setLoading(false));
-    }, []);
-
-    const handleLoginSuccess = ({ token, user }) => {
-        localStorage.setItem('token', token);
-        setUser(user);
-    };
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        setUser(null);
-    };
-
-    if (loading) {
-        return <div className="centered">Loading...</div>;
-    }
-
-    return (
-        <div className="app">
-            {user ? (
-                <Dashboard user={user} onLogout={handleLogout} />
-            ) : (
-                <Login onSuccess={handleLoginSuccess} />
-            )}
-        </div>
-    );
+          {/* Protected Routes */}
+          <Route path="/dashboard" element={
+            <ProtectedRoute><DashboardPage /></ProtectedRoute>
+          } />
+          <Route path="/recruiters" element={
+            <ProtectedRoute><RecruiterPage /></ProtectedRoute>
+          } />
+          <Route path="/find" element={
+            <ProtectedRoute><FindMentorPage /></ProtectedRoute>
+          } />
+          <Route path="/session/:mentorId" element={
+            <ProtectedRoute><SessionBookingPage /></ProtectedRoute>
+          } />
+          <Route path="/chat/:sessionId" element={
+            <ProtectedRoute><SessionChatPage /></ProtectedRoute>
+          } />
+          <Route path="/profile" element={
+            <ProtectedRoute><ProfilePage /></ProtectedRoute>
+          } />
+          <Route path="/teach" element={
+            <ProtectedRoute><TeachSkillPage /></ProtectedRoute>
+          } />
+          <Route path="/sessions" element={
+            <ProtectedRoute><MySessionsPage /></ProtectedRoute>
+          } />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

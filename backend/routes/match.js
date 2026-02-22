@@ -17,7 +17,7 @@ const verifyJWT = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.userId = decoded.id;
         next();
-    } catch (err) {
+    } catch {
         return res.status(401).json({ message: 'Invalid or expired token' });
     }
 };
@@ -45,26 +45,29 @@ router.get('/', verifyJWT, async (req, res) => {
 
         const { skillsWant } = currentUser;
 
-        if (!skillsWant || skillsWant.length === 0) {
-            return res.status(200).json({ matches: [] });
+        let query = {};
+        if (skillsWant && skillsWant.length > 0) {
+            // Build case-insensitive regex to match any of the wanted skill names
+            const escapedNames = skillsWant.map(
+                (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+            );
+            const nameRegex = new RegExp(`^(${escapedNames.join('|')})$`, 'i');
+            query = {
+                skillsHave: {
+                    $elemMatch: {
+                        name: nameRegex,
+                    },
+                },
+            };
+        } else {
+            // General Discovery: Return users with any skills
+            query = { 'skillsHave.0': { $exists: true } };
         }
 
-        // Build case-insensitive regex to match any of the wanted skill names
-        const escapedNames = skillsWant.map(
-            (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-        );
-        const nameRegex = new RegExp(`^(${escapedNames.join('|')})$`, 'i');
-
-        // Find all other users who have at least one matching teachable skill
-        const candidates = await User.find({
-            _id: { $ne: req.userId },
-            skillsHave: {
-                $elemMatch: {
-                    name: nameRegex,
-                    allowedToTeach: true,
-                },
-            },
-        }).select('name email photo role reputation skillsHave skillsWant');
+        // Find all users matching the query (including current user for verification)
+        const candidates = await User.find(query)
+            .select('name email photo role reputation skillsHave sessionsTaught sessionsLearned bio')
+            .limit(20);
 
         // Build a lowercase set of the current user's wanted skills for fast lookup
         const wantSet = new Set(skillsWant.map((s) => s.toLowerCase()));
@@ -76,10 +79,17 @@ router.get('/', verifyJWT, async (req, res) => {
         });
 
         // Attach which skills matched (useful for the frontend to display)
-        const top5 = candidates.slice(0, 5).map((user) => {
-            const matchedSkills = user.skillsHave.filter(
-                (s) => s.allowedToTeach && wantSet.has(s.name.toLowerCase())
-            );
+        const result = candidates.slice(0, 10).map((user) => {
+            let matchedSkills = [];
+            if (skillsWant && skillsWant.length > 0) {
+                matchedSkills = user.skillsHave.filter(
+                    (s) => wantSet.has(s.name.toLowerCase())
+                );
+            } else {
+                // If no wants, just show all their skills
+                matchedSkills = user.skillsHave;
+            }
+
             return {
                 _id: user._id,
                 name: user.name,
@@ -87,11 +97,14 @@ router.get('/', verifyJWT, async (req, res) => {
                 photo: user.photo,
                 role: user.role,
                 reputation: user.reputation,
-                matchedSkills, // skills that caused this match
+                sessionsTaught: user.sessionsTaught,
+                sessionsLearned: user.sessionsLearned,
+                bio: user.bio,
+                matchedSkills,
             };
         });
 
-        res.status(200).json({ matches: top5 });
+        res.status(200).json({ matches: result });
     } catch (err) {
         console.error('Match error:', err.message);
         res.status(500).json({ message: 'Server error' });

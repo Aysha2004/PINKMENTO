@@ -2,7 +2,16 @@ const express = require('express');
 const router = express.Router();
 const { OAuth2Client } = require('google-auth-library');
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 const User = require('../models/User');
+
+const logFile = path.join(__dirname, '../../debug.log');
+const logToFile = (msg) => {
+    const timestamp = new Date().toISOString();
+    fs.appendFileSync(logFile, `[${timestamp}] ${msg}\n`);
+};
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -10,6 +19,7 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const verifyJWT = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        logToFile("AUTH ERROR: No token provided");
         return res.status(401).json({ message: 'No token provided' });
     }
     const token = authHeader.split(' ')[1];
@@ -18,13 +28,10 @@ const verifyJWT = (req, res, next) => {
         req.userId = decoded.id;
         next();
     } catch (err) {
+        logToFile(`AUTH ERROR: Invalid or expired token - ${err.message}`);
         return res.status(401).json({ message: 'Invalid or expired token' });
     }
 };
-
-// ─── Helper: check and apply beginner expiry ─────────────────────────────────
-// REMOVED in favor of user.checkAndUpgrade() instance method on User model.
-
 // ─── POST /auth/google ────────────────────────────────────────────────────────
 router.post('/google', async (req, res) => {
     const { token } = req.body;
@@ -34,14 +41,29 @@ router.post('/google', async (req, res) => {
     }
 
     try {
-        // Verify the Google ID token
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: process.env.GOOGLE_CLIENT_ID,
-        });
+        logToFile(`Attempting Google login with token segment count: ${token.split('.').length}`);
+        let googleId, name, email, photo;
 
-        const payload = ticket.getPayload();
-        const { sub: googleId, name, email, picture: photo } = payload;
+        // Try verifying as ID Token first
+        try {
+            const ticket = await client.verifyIdToken({
+                idToken: token,
+                audience: process.env.GOOGLE_CLIENT_ID,
+            });
+            const payload = ticket.getPayload();
+            googleId = payload.sub;
+            name = payload.name;
+            email = payload.email;
+            photo = payload.picture;
+        } catch (idErr) {
+            // If ID Token verification fails, try as Access Token (starts with ya29.)
+            console.log("Token is not a valid ID Token, trying as Access Token...");
+            const response = await axios.get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`);
+            googleId = response.data.sub;
+            name = response.data.name;
+            email = response.data.email;
+            photo = response.data.picture;
+        }
 
         // Find or create user — keyed by email (one user per email)
         let user = await User.findOne({ email });
@@ -83,7 +105,7 @@ router.post('/google', async (req, res) => {
             user,
         });
     } catch (err) {
-        console.error('Google auth error:', err.message);
+        logToFile(`GOOGLE AUTH ERROR: ${err.message}`);
         res.status(401).json({ message: 'Google token verification failed' });
     }
 });
@@ -101,9 +123,28 @@ router.get('/me', verifyJWT, async (req, res) => {
         // Check upgrade conditions on every /me call too
         await user.checkAndUpgrade();
 
+        // Welcome coins for new/testing users
+        if (user.coins === 0 && user.sessionsLearned === 0 && user.sessionsTaught === 0) {
+            user.coins = 10;
+            await user.save();
+        }
+
         res.status(200).json({ user });
     } catch (err) {
         console.error('Fetch user error:', err.message);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// ─── GET /auth/user/:id ──────────────────────────────────────────────────
+// Returns public profile of another user.
+router.get('/user/:id', verifyJWT, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+            .select('name email photo role reputation bio sessionsTaught sessionsLearned skillsHave');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        res.status(200).json({ user });
+    } catch {
         res.status(500).json({ message: 'Server error' });
     }
 });

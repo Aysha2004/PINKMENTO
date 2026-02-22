@@ -1,0 +1,431 @@
+.booking-container {
+    min-height: 100vh;
+    padding: 40px 20px 80px 20px;
+    background-color: var(--bg-pink);
+    background-image: radial-gradient(var(--secondary-pink) 1px, transparent 1px);
+    background-size: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.booking-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: slideDown 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-family: var(--font-pixel);
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: var(--white);
+    color: var(--primary-pink);
+}
+
+.booking-title {
+    font-family: var(--font-pixel);
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    line-height: 1.5;
+}
+
+.booking-tagline {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+/* =========================================
+   ROLE TOGGLE
+   ========================================= */
+
+.role-simulation-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    background-color: var(--white);
+    padding: 12px 24px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid var(--bg-pink);
+}
+
+.role-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: var(--text-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.role-label input {
+    accent-color: var(--primary-pink);
+    cursor: pointer;
+}
+
+.role-label.active {
+    color: var(--primary-pink);
+}
+
+/* =========================================
+   SPLIT LAYOUT
+   ========================================= */
+
+.booking-content-split {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    max-width: 1000px;
+    align-items: flex-start;
+}
+
+.booking-mentor-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.booking-form-side {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section-title {
+    font-family: var(--font-pixel);
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    padding-left: 8px;
+}
+
+/* =========================================
+   MENTOR CARD
+   ========================================= */
+
+.booking-mentor-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 32px 24px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.booking-mentor-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.booking-mentor-image-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--bg-pink);
+    border: 3px solid var(--primary-pink);
+    overflow: hidden;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booking-mentor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.booking-mentor-name {
+    font-family: var(--font-pixel);
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.booking-mentor-skill {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    color: var(--accent-pink);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.booking-mentor-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.stat-pill {
+    background-color: var(--bg-pink);
+    color: var(--text-dark);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: var(--border-radius-sm);
+    display: inline-block;
+}
+
+/* =========================================
+   FORM SECTION
+   ========================================= */
+
+.booking-form-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 32px;
+    box-shadow: var(--shadow-soft);
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 16px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.half-width {
+    flex: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--border-radius-sm);
+    border: 2px solid #FFE4E1;
+    /* Muted pink border */
+    background-color: #FAFAFA;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: var(--primary-pink);
+    background-color: var(--white);
+    box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.2);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* =========================================
+   MEET LINK & ROLE STYLES
+   ========================================= */
+
+.meet-link-group {
+    background-color: #FAFAFA;
+    padding: 16px;
+    border-radius: var(--border-radius-sm);
+    border: 1px dashed var(--secondary-pink);
+    margin-top: 8px;
+}
+
+.pixel-label {
+    font-family: var(--font-pixel) !important;
+    font-size: 0.75rem !important;
+    color: var(--accent-pink) !important;
+    margin-bottom: 12px;
+}
+
+.join-live-btn {
+    background: linear-gradient(135deg, #FF69B4 0%, #FFB6C1 100%);
+    color: var(--white);
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 14px 24px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    width: 100%;
+    margin-top: 8px;
+}
+
+.join-live-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+}
+
+.join-live-btn:active {
+    transform: translateY(0);
+}
+
+.no-link-text {
+    font-family: 'Nunito', sans-serif;
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-top: 8px;
+}
+
+/* =========================================
+   COST & ACTIONS
+   ========================================= */
+
+.cost-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFF0F5;
+    padding: 16px 20px;
+    border-radius: var(--border-radius-sm);
+    margin-top: 8px;
+    border: 2px dashed var(--secondary-pink);
+}
+
+.cost-label {
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    color: var(--text-dark);
+}
+
+.cost-badge {
+    background-color: var(--white);
+    color: var(--text-dark);
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 2px 4px rgba(255, 182, 193, 0.3);
+    border: 2px solid var(--primary-pink);
+}
+
+.booking-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.cancel-btn {
+    background: transparent;
+    border: 2px solid var(--text-light);
+    color: var(--text-light);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #F5F5F5;
+    color: var(--text-dark);
+    border-color: var(--text-dark);
+}
+
+.confirm-btn {
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+    padding: 12px 32px !important;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN 
+   ========================================= */
+@media (max-width: 850px) {
+    .booking-content-split {
+        flex-direction: column;
+    }
+
+    .booking-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .back-btn {
+        position: static;
+        transform: none;
+        margin-bottom: 16px;
+    }
+
+    .booking-mentor-side,
+    .booking-form-side {
+        width: 100%;
+    }
+
+    .booking-mentor-stats {
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .booking-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-btn,
+    .confirm-btn {
+        width: 100%;
+    }
+}

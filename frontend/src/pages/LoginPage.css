@@ -1,0 +1,146 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--bg-pink);
+    /* Cute subtle pattern or radial gradient can be added here */
+    background-image: radial-gradient(var(--secondary-pink) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+.login-card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 440px;
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.app-title {
+    font-family: var(--font-pixel);
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    font-size: 2.2rem;
+    /* subtle bounce animation for the ribbon */
+    display: inline-block;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.app-tagline {
+    font-family: var(--font-pixel);
+    color: var(--text-light);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    line-height: 1.8;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.action-buttons {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 8px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.divider span {
+    padding: 0 10px;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.login-footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-family: var(--font-pixel);
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.signup-link {
+    color: var(--accent-pink);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+    color: var(--primary-pink);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 20px;
+        border-radius: var(--border-radius-sm);
+    }
+
+    .app-title {
+        font-size: 1.75rem;
+    }
+}

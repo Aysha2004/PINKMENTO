@@ -1,8 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const path = require('path');
 const Session = require('../models/Session');
 const User = require('../models/User');
+
+const logFile = path.join(__dirname, '../../debug.log');
+const logToFile = (msg) => {
+    const timestamp = new Date().toISOString();
+    fs.appendFileSync(logFile, `[${timestamp}] SESS: ${msg}\n`);
+};
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const BEGINNER_SESSION_REWARD = 5;   // coins teacher earns when a beginner completes
@@ -19,7 +27,7 @@ const verifyJWT = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.userId = decoded.id;
         next();
-    } catch (err) {
+    } catch {
         return res.status(401).json({ message: 'Invalid or expired token' });
     }
 };
@@ -30,33 +38,38 @@ const verifyJWT = (req, res, next) => {
 // Contributor body:  { teacherId, skill, topic, timeSlot, stakeCoins }
 router.post('/', verifyJWT, async (req, res) => {
     const { teacherId, skill, topic, timeSlot, stakeCoins = 0 } = req.body;
+    logToFile(`Booking attempt: Requester ${req.userId} -> Teacher ${teacherId} for skill "${skill}"`);
 
     if (!teacherId || !skill || !topic || !timeSlot) {
+        logToFile("ERROR: Missing required fields in booking request");
         return res.status(400).json({ message: 'teacherId, skill, topic, and timeSlot are required' });
-    }
-
-    if (teacherId === req.userId.toString()) {
-        return res.status(400).json({ message: 'You cannot request a session with yourself' });
     }
 
     try {
         const teacher = await User.findById(teacherId);
-        if (!teacher) return res.status(404).json({ message: 'Teacher not found' });
+        if (!teacher) {
+            logToFile(`ERROR: Teacher ${teacherId} not found in DB`);
+            return res.status(404).json({ message: 'Teacher not found' });
+        }
 
         const teacherSkill = teacher.skillsHave.find(
-            (s) => s.name.toLowerCase() === skill.toLowerCase() && s.allowedToTeach
+            (s) => s.name.toLowerCase() === skill.toLowerCase()
         );
         if (!teacherSkill) {
-            return res.status(403).json({ message: `Teacher is not allowed to teach "${skill}"` });
+            logToFile(`ERROR: Teacher ${teacherId} does not have skill "${skill}"`);
+            return res.status(403).json({ message: `Teacher does not have skill "${skill}"` });
         }
+        logToFile(`Teacher skill found. Proceeding with booking.`);
 
         // For contributors, stakeCoins must be a positive number
         const requester = await User.findById(req.userId);
         if (requester.role !== 'beginner') {
             if (!stakeCoins || stakeCoins <= 0) {
+                logToFile(`ERROR: Contributor requester ${req.userId} provided invalid stakeCoins: ${stakeCoins}`);
                 return res.status(400).json({ message: 'Contributors must provide stakeCoins > 0' });
             }
             if (requester.coins < stakeCoins) {
+                logToFile(`ERROR: Requester ${req.userId} has insufficient coins (${requester.coins}) for stake (${stakeCoins})`);
                 return res.status(400).json({
                     message: `Not enough coins. You have ${requester.coins}, need ${stakeCoins}`,
                 });
@@ -78,8 +91,10 @@ router.post('/', verifyJWT, async (req, res) => {
             { path: 'teacherId', select: 'name email photo' },
         ]);
 
+        logToFile(`Session created successfully: ${session._id}`);
         res.status(201).json({ session });
     } catch (err) {
+        logToFile(`ERROR creating session: ${err.message}`);
         console.error('Create session error:', err.message);
         res.status(500).json({ message: 'Server error' });
     }
@@ -97,7 +112,7 @@ router.get('/', verifyJWT, async (req, res) => {
             .sort({ createdAt: -1 });
 
         res.status(200).json({ sessions });
-    } catch (err) {
+    } catch {
         res.status(500).json({ message: 'Server error' });
     }
 });
@@ -119,7 +134,7 @@ router.get('/:id', verifyJWT, async (req, res) => {
         if (!isParticipant) return res.status(403).json({ message: 'Access denied' });
 
         res.status(200).json({ session });
-    } catch (err) {
+    } catch {
         res.status(500).json({ message: 'Server error' });
     }
 });
@@ -203,7 +218,7 @@ router.patch('/:id/reject', verifyJWT, async (req, res) => {
         ]);
 
         res.status(200).json({ session });
-    } catch (err) {
+    } catch {
         res.status(500).json({ message: 'Server error' });
     }
 });

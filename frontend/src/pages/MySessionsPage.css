@@ -1,0 +1,323 @@
+.sessions-container {
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+    background-color: var(--bg-pink);
+    background-image: radial-gradient(var(--secondary-pink) 1px, transparent 1px);
+    background-size: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.sessions-header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: slideDown 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%;
+    max-width: 920px;
+    position: relative;
+}
+
+.back-btn-sessions {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.back-btn-sessions:hover {
+    background-color: var(--white);
+    color: var(--primary-pink);
+}
+
+.sessions-page-title {
+    font-family: var(--font-pixel);
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.sessions-tagline {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+/* =========================================
+   SECTIONS
+   ========================================= */
+
+.sessions-section {
+    width: 100%;
+    max-width: 920px;
+    margin-bottom: 48px;
+}
+
+.section-heading {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-heading::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--secondary-pink), transparent);
+    border-radius: 2px;
+}
+
+/* =========================================
+   SESSIONS GRID
+   ========================================= */
+
+.sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* =========================================
+   SESSION CARD
+   ========================================= */
+
+.session-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 2px solid transparent;
+}
+
+.session-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.session-card--upcoming {
+    border-color: rgba(255, 182, 193, 0.4);
+}
+
+.session-card--past {
+    opacity: 0.9;
+}
+
+.session-card--past:hover {
+    opacity: 1;
+}
+
+/* =========================================
+   CARD INTERNALS
+   ========================================= */
+
+.session-card-top {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.session-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-pink);
+    background-color: var(--bg-pink);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.session-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.session-name {
+    font-family: var(--font-pixel);
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.session-skill {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-pink);
+    margin-bottom: 10px;
+}
+
+.session-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   BADGES
+   ========================================= */
+
+.role-badge {
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.role-mentor {
+    background-color: #E8EAF6;
+    color: #3F51B5;
+}
+
+.role-learner {
+    background-color: #FFF0F5;
+    color: #C2185B;
+}
+
+.status-badge {
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-upcoming {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.status-completed {
+    background-color: #F3E5F5;
+    color: #7B1FA2;
+}
+
+/* =========================================
+   META ROW
+   ========================================= */
+
+.session-meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background-color: #FAFAFA;
+    border-radius: var(--border-radius-sm);
+    padding: 10px 14px;
+    border: 1px solid #FFE4E1;
+}
+
+.meta-item {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.star-rating {
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   JOIN BUTTON
+   ========================================= */
+
+.join-session-btn {
+    background: linear-gradient(135deg, #FF69B4 0%, #FFB6C1 100%);
+    color: white;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 12px 20px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    width: 100%;
+    margin-top: 4px;
+}
+
+.join-session-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+}
+
+.join-session-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+
+.empty-state {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: var(--text-light);
+    font-style: italic;
+    padding: 32px;
+    text-align: center;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 600px) {
+    .sessions-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .back-btn-sessions {
+        position: static;
+        transform: none;
+        align-self: flex-start;
+    }
+
+    .sessions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .session-meta {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}

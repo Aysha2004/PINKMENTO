@@ -1,0 +1,383 @@
+.recruiter-container {
+    min-height: 100vh;
+    padding: 40px 20px 80px 20px;
+    background-color: var(--bg-pink);
+    background-image: radial-gradient(var(--secondary-pink) 1px, transparent 1px);
+    background-size: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recruiter-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: slideDown 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+}
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-family: var(--font-pixel);
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: var(--white);
+    color: var(--primary-pink);
+}
+
+.recruiter-title {
+    font-family: var(--font-pixel);
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    line-height: 1.5;
+}
+
+.recruiter-tagline {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+/* Base styling for pixel fonts everywhere */
+.rank-number,
+.pixel-name,
+.pixel-name-small {
+    font-family: var(--font-pixel);
+    color: var(--text-dark);
+}
+
+/* =========================================
+   TOP 3 SECTION (Horizontal Cards) 
+   ========================================= */
+
+.top-mentors-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 40px;
+}
+
+.top-mentor-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 3px solid transparent;
+}
+
+.top-mentor-card:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--secondary-pink);
+}
+
+/* Rank 1 Highlight */
+.top-mentor-card.rank-one {
+    border-color: #FFD700;
+    /* Soft gold */
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.2);
+    transform: scale(1.02);
+    /* slight inner glow for gold effect */
+    background: linear-gradient(to right, #ffffff, #fffdf2);
+}
+
+.top-mentor-card.rank-one:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+}
+
+.rank-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    gap: 6px;
+}
+
+.rank-number {
+    font-size: 1.2rem;
+}
+
+.rank-medal {
+    font-size: 1.5rem;
+}
+
+.mentor-profile-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1.5;
+}
+
+.mentor-image-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--bg-pink);
+    overflow: hidden;
+    border: 2px solid var(--primary-pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rank-one .mentor-image-wrapper {
+    border-color: #FFD700;
+}
+
+.mentor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mentor-basic-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pixel-name {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.rank-one .pixel-name {
+    font-size: 0.95rem;
+}
+
+.mentor-skill {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: var(--accent-pink);
+    font-size: 0.9rem;
+}
+
+.mentor-metrics {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+}
+
+.metric-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.metric-value {
+    font-weight: 800;
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+.metric-label {
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.metric-divider {
+    width: 1px;
+    height: 24px;
+    background-color: var(--secondary-pink);
+}
+
+.mentor-action {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0.5;
+}
+
+/* Keep button readable and tight */
+.recruit-btn,
+.recruit-btn-small {
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 800 !important;
+    letter-spacing: 0px !important;
+    font-size: 0.9rem !important;
+}
+
+.recruit-btn {
+    padding: 10px 24px !important;
+}
+
+
+/* =========================================
+   LIST SECTION (Table/Rows style)
+   ========================================= */
+
+.mentors-list-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.list-mentor-row {
+    background-color: var(--white);
+    border-radius: var(--border-radius-sm);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(255, 182, 193, 0.1);
+    transition: all 0.2s ease;
+}
+
+.list-mentor-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(255, 182, 193, 0.2);
+}
+
+.list-rank {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.list-rank .rank-number {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.list-profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1.5;
+}
+
+.list-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--bg-pink);
+    border: 2px solid var(--secondary-pink);
+}
+
+.list-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pixel-name-small {
+    font-size: 0.75rem;
+}
+
+.list-skill {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: var(--accent-pink);
+    font-size: 0.85rem;
+}
+
+.list-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.list-action {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0.5;
+}
+
+.recruit-btn-small {
+    padding: 8px 16px !important;
+    font-size: 0.8rem !important;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN 
+   ========================================= */
+@media (max-width: 800px) {
+    .recruiter-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .back-btn {
+        position: static;
+        transform: none;
+        margin-bottom: 20px;
+    }
+
+    .top-mentor-card,
+    .list-mentor-row {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+        padding: 24px;
+    }
+
+    .mentor-profile-section,
+    .list-profile {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .mentor-metrics,
+    .list-stats {
+        width: 100%;
+        justify-content: space-evenly;
+        border-top: 1px solid var(--bg-pink);
+        padding-top: 12px;
+    }
+
+    .mentor-action,
+    .list-action {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .recruit-btn,
+    .recruit-btn-small {
+        width: 100%;
+    }
+
+    .list-rank {
+        display: none;
+        /* Hide rank number on mobile list to save space */
+    }
+}

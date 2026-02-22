@@ -1,0 +1,206 @@
+.dashboard-container {
+    min-height: 100vh;
+    padding: 0 0 40px 0;
+    background-color: var(--bg-pink);
+    background-image: radial-gradient(var(--secondary-pink) 1px, transparent 1px);
+    background-size: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* =========================================
+   TOP NAVBAR
+   ========================================= */
+
+.dashboard-navbar {
+    width: 100%;
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed var(--soft-pink);
+}
+
+.navbar-brand {
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.navbar-profile-btn {
+    background: none;
+    border: 2px solid var(--soft-pink);
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-profile-btn:hover {
+    transform: scale(1.1);
+}
+
+.navbar-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background-color: var(--bg-pink);
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: slideDown 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-title {
+    font-family: var(--font-pixel);
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    line-height: 1.5;
+}
+
+.dashboard-title .logo-icon {
+    font-size: 2rem;
+    display: inline-block;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.stat-badge {
+    background-color: var(--white);
+    padding: 8px 16px;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-soft);
+    border: 2px solid var(--primary-pink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dashboard-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.action-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    border: 3px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-pink);
+    background-color: #fffafb;
+    /* Soft pink highlight */
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
+}
+
+.action-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.card-title {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.card-desc {
+    font-family: 'Nunito', sans-serif;
+    /* Keep normal font for readability of desc */
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+/* Responsive Grid */
+/* At 900px, 2 columns is already active naturally by our change */
+@media (max-width: 900px) {
+    .dashboard-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-title {
+        font-size: 1.1rem;
+    }
+
+    .stat-badge {
+        font-size: 0.6rem;
+        padding: 6px 12px;
+    }
+}
