@@ -89,15 +89,15 @@ git clone https://github.com/yourusername/pinkmentor.git
 Login and Registration Page
 Secure sign-in page with email/password and Google authentication options.
 
-![Screenshot2](Add screenshot 2 here with proper name)
+![image]()
 View My Matches / My Sessions
 Manage upcoming and past sessions, track learning progress, and join scheduled meetings.
 
-![Screenshot3](Add screenshot 3 here with proper name)
+![image](Add screenshot 3 here with proper name)
 Share Your Knowledge Page
 Form to create a new skill offering with level, pricing, availability, and description.
 
-![Screenshot3](Add screenshot 3 here with proper name)
+![image](Add screenshot 3 here with proper name)
 Recruit Talent (Leaderboard)
 Explore top-rated mentors based on reputation and session count and recruit the best fit.
 
